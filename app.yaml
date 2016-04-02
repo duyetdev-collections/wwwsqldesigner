@@ -1,0 +1,36 @@
+runtime: php55
+api_version: 1
+version: alpha-001
+
+handlers:
+- url: /
+  script: index.html
+- url: /index\.html
+  script: index.html 
+
+- url: /locale
+  static_dir: locale
+- url: /styles
+  static_dir: styles
+- url: /images
+  static_dir: images
+- url: /js
+  static_dir: js
+- url: /db
+  static_dir: db
+
+- url: /(.+\.(gif|png|jpg))$
+  static_files: \1
+  upload: .+\.(gif|png|jpg)$
+  application_readable: true
+
+# Serve php scripts.
+- url: /(.+\.php)$
+  script: \1
+
+
+# Serve php scripts.
+- url: /backend/(.*)/?$
+  script: backend/\1/index.php
+
+
